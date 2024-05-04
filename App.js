@@ -15,6 +15,7 @@ import Ex09 from './screens/week2/Ex09';
 import Ex10 from './screens/week2/Ex10';
 import Ex11 from './screens/week2/Ex11';
 import Ex12 from './screens/week2/Ex12';
+import Health from './screens/week5/Health';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
     // <Ex09 />    
     // <Ex10 />    
     // <Ex11 />    
-    <Ex12 />    
+    // <Ex12 />   
+    <Health /> 
   );
 }
