@@ -18,6 +18,9 @@ import Ex12 from './screens/week2/Ex12';
 import Health from './screens/week5/Health';
 import Travel from './screens/week3/Travel';
 import Resort from './screens/week3/Resort';
+import HomeIconMenu from './components/week6/HomeIconMenu';
+import Home from './screens/week6/Home';
+import FlatListExample from './screens/week6/FlatListExample';
 
 export default function App() {
   return (
@@ -34,8 +37,11 @@ export default function App() {
     // <Ex10 />    
     // <Ex11 />    
     // <Ex12 />   
-    <Health /> 
+    // <Health /> 
     // <Travel />
     // <Resort />
+    // <HomeIconMenu />
+    <Home />
+    // <FlatListExample />
   );
 }
