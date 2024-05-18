@@ -21,9 +21,20 @@ import Resort from './screens/week3/Resort';
 import HomeIconMenu from './components/week6/HomeIconMenu';
 import Home from './screens/week6/Home';
 import FlatListExample from './screens/week6/FlatListExample';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomTab from './navigations/BottomTab';
+import HomeStack from './navigations/HomeStack';
+import RootStack from './navigations/RootStack';
+import ChartKitScreen from './screens/week5/ChartKitScreen';
 
 export default function App() {
   return (
+    <NavigationContainer>
+    {/* <HomeStack /> */}
+    {/* <BottomTab /> */}
+    <RootStack />
+    </NavigationContainer>
+    // <ChartKitScreen />
     // <Welcome/>
     // <Ex01 />    
     // <Ex02 />    
@@ -41,7 +52,7 @@ export default function App() {
     // <Travel />
     // <Resort />
     // <HomeIconMenu />
-    <Home />
+    // <Home />
     // <FlatListExample />
   );
 }
