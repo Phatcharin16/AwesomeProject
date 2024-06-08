@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import BookStorage from "../../storages/BookStorage";
+import BookService from "../../services/BookService";
 
 export default function BookDetail() {
     const navigation = useNavigation();
@@ -14,13 +16,7 @@ export default function BookDetail() {
     });     
 
     //DELETE POPUP    
-    const deleteBook = async () => {    
-        const { id } = route.params;
-        //REMOVE BOOK
-        await BookStorage.removeItem(id);
-        //REDIRECT TO
-        navigation.navigate("Book");
-    };
+        
     const confirmDelete = () => {    
         return Alert.alert(
             "ยืนยันการลบ?",
@@ -31,29 +27,38 @@ export default function BookDetail() {
             ]
         );
     };
-
+  
+    const deleteBook = async () => {
+        const { id } = route.params;
+        //REMOVE BOOK
+        //await BookStorage.removeItem(id);
+        await BookService.destroyItem({"id":id});
+        //REDIRECT TO
+        navigation.navigate("Book");
+      };
+    const onLoad = async () => {             
+        const { id } = route.params;
+        //let b = await BookStorage.readItemDetail(id);
+        let b = await BookService.getItemDetail({"id":id});
+        setBook(b);
+        navigation.setOptions({ headerRight: () => ( <TopRightMenu b={b} /> ) }); 
+    };
     // TOP RIGHT MENU
     const TopRightMenu = ({b})=>(
         <View style={{ flexDirection: "row", width: 100, justifyContent: "space-around" }}>
-            <TouchableOpacity 
-                onPress={() => { navigation.navigate("BookForm", { "id": b.id }); }}
+            <TouchableOpacity
+                 onPress={() => { navigation.navigate("BookForm", { "id": b.id }); }}
                 >
                 <FontAwesome name="edit" size={30} />
             </TouchableOpacity>
-            <TouchableOpacity 
-                onPress={() => { confirmDelete(); }}
+            <TouchableOpacity
+                 onPress={() => { confirmDelete(); }}
                 >
                 <FontAwesome name="trash" size={30} />
             </TouchableOpacity>
         </View>
     );
-    const onLoad = async () => { 
-        const { id } = route.params;
-        // let b = await BookStorage.readItemDetail(id);
-        navigation.setOptions({ headerRight: () => ( <TopRightMenu b={b} /> ) });      
-        // navigation.setOptions({ headerRight: () => ( <TopRightMenu /> ) });               
-    };
-    useEffect(() => { onLoad(); }, []);
+    useEffect(() => { onLoad(); }, [])
     // CONDITIONAL RENDERING
     if(Object.keys(book).length == 0){ return <View></View> }
 
