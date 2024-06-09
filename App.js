@@ -26,14 +26,18 @@ import BottomTab from './navigations/BottomTab';
 import HomeStack from './navigations/HomeStack';
 import RootStack from './navigations/RootStack';
 import ChartKitScreen from './screens/week5/ChartKitScreen';
+import { AuthContext, AuthContextProvider } from "./hooks/AuthContextProvider";
+
 
 export default function App() {
   return (
+    <AuthContextProvider>
     <NavigationContainer>
     {/* <HomeStack /> */}
     {/* <BottomTab /> */}
     <RootStack />
     </NavigationContainer>
+    </AuthContextProvider>
     // <ChartKitScreen />
     // <Welcome/>
     // <Ex01 />    
