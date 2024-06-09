@@ -10,11 +10,11 @@ export default function UniversityMarkers(props) {
         "latitude": Number(item.latitude),
         "longitude": Number(item.longitude)
       }}
-      title={item.name}
+      title={item.user_id}
       key={item.id.toString()}
-      description={item.address}
+      description={item.user_id}
     >
-        <FontAwesome name="university" size={20} color="tomato" />
+        <FontAwesome name="user" size={20} color="tomato" />
     </Marker>
   ));
 }
